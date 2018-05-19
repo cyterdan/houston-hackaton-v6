@@ -1,0 +1,14 @@
+import  pandas
+
+
+def defineInputs :
+  k = 200
+  m = 10
+
+
+
+  return k,g,N,r,F,M,info_H
+
+
+
+k,g,N,r,F,M,info_H=defineInputs()
