@@ -7,23 +7,27 @@
 
 kends = k; % this is where the plot stops, for now we just go to the last available day
 
-for l = 1:6
+n_plots = size(DATA,2);
 
-freq = squeeze(squeeze(DATA{i}(1,5,:,:))); % magic data?
+% Fig(l) = figure;  %old figure
+
+for l = 1:n_plots
+
+% make subplots
+subplots(l) = subplot(n_plots/2, 2, l);
+
+freq = squeeze(squeeze(DATA{l}(1,5,:,:)));
 
 x = 1:1:k;
 
-wmut1 = squeeze((1/N)*DATA_info_MUT{i}(1,2,:,l));
-wmut2 = squeeze((1/N)*DATA_info_MUT{i}(1,3,:,l));
-wmut3 = squeeze((1/N)*DATA_info_MUT{i}(1,4,:,l));
+wmut1 = squeeze((1/N)*DATA_info_MUT{l}(1,2,:,l));
+wmut2 = squeeze((1/N)*DATA_info_MUT{l}(1,3,:,l));
+wmut3 = squeeze((1/N)*DATA_info_MUT{l}(1,4,:,l));
 
 
-rmut1 = squeeze((1/N)*DATA_info_MUT{i}(2,2,:,l));
-rmut2 = squeeze((1/N)*DATA_info_MUT{i}(2,3,:,l));
-rmut3 = squeeze((1/N)*DATA_info_MUT{i}(2,4,:,l));
-
-
-Fig(l) = figure;  %old figure
+rmut1 = squeeze((1/N)*DATA_info_MUT{l}(2,2,:,l));
+rmut2 = squeeze((1/N)*DATA_info_MUT{l}(2,3,:,l));
+rmut3 = squeeze((1/N)*DATA_info_MUT{l}(2,4,:,l));
 
 %TODO: If final observed value is <50%, invert all values (y = 100% - y)
 
@@ -76,4 +80,6 @@ legend({'observed','w1','w2','w3','r1','r2','r3'},'Location','northwest');
 %close
 end
 
+% link axes
+linkaxes(subplots, 'x');
 
