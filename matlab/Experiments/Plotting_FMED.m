@@ -5,12 +5,12 @@
 %for l = [1,3,16,21,24,26,35,36,38,41,43,45,53,55,58,60,61,67,68,69,70,72,78,80,83]
 %for l = [3,9,16,26,35,38,41,43,45,55,58,60,61,68,69,70,72,78,80,83,85,88,93,94,96,100]
 
-freq = squeeze(squeeze(info_HHH(1,5,:,:))); % magic data? You first need to run info_MUT_finding.m
-
 kends = k; % this is where the plot stops, for now we just go to the last available day
 
 for l = 1:6
-    
+
+freq = squeeze(squeeze(DATA{i}(1,5,:,:))); % magic data?
+
 x = 1:1:k;
 
 wmut1 = squeeze((1/N)*DATA_info_MUT{i}(1,2,:,l));
@@ -24,6 +24,8 @@ rmut3 = squeeze((1/N)*DATA_info_MUT{i}(2,4,:,l));
 
 
 Fig(l) = figure;  %old figure
+
+%TODO: If final observed value is <50%, invert all values (y = 100% - y)
 
 plot(x,freq(:,l),'r',x,wmut1,':',x,wmut2,':k',x,wmut3,':',x,rmut1,':',x,rmut2,':',x,rmut3,':','LineWidth',2)
 %plot(x,freq(:,l),'r',x,W_new_1(:,l),x,wmut1,':',x,wmut2,':',x,wmut3,':',x,rmut1,':',x,rmut2,':',x,rmut3,':','LineWidth',2)
