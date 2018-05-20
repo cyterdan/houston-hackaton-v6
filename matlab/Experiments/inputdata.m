@@ -23,7 +23,7 @@ F0 = 200;
 F = F0.^(1+S);
 
 for i=1:6
-  FMED{i} = F .* MED{i}
+  FMED{i} = F .* MED{i};
 end
 
 
