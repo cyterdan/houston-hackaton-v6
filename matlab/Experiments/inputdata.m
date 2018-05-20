@@ -10,30 +10,33 @@ r=10^(-6);  %Mutation rate
 %F=[200,210,220,230];  %Growth factors (fixed-time model not saturation-time)
 
 MED{1} = [1,1,1,1];
-MED{2} = [0.8,1,1,1];
-MED{3} = [1,0.8,1,1];
-MED{4} = [1,1,0.8,1];
-MED{5} = [1,1,1,0.8];
-MED{6} = [0.8,0.8,0.8,0.8];
+MED{2} = [0.5,1,1,1];
+MED{3} = [1,0.5,1,1];
+MED{4} = [1,1,0.5,1];
+MED{5} = [1,1,1,0.5];
+MED{6} = [1.0,0.5,0.5,0.5];
+MED{7} = [0.5,0.5,0.5,0.5];
 
 S=[0,0.04,0.07,0.13];
-
 
 F0 = 200;
 F = F0.^(1+S);
 
-for i=1:6
+for i=1:size(MED,2)
   FMED{i} = F .* MED{i};
 end
 
-
-
 %4 X 4 transition matrix for mutants
+
 M=[0,1/3,1/3,1/3;0,0,1/2,1/2;0,0,0,1;0,0,0,0];
 %the strongest species 4 does not mutate ever
 %species 3 can only mutate into 4
 %species 2 can only mutate into 3 or 4
+
+
+%M=[0,1/3,1/3,1/3;0,0,0,0;0,0,0,0;0,0,0,0];
 %species 1 can only mutate into 2 or 3 or 4
+%ignore secondary or tertiary mutation possibilities
 
 k = 200;  %number of days per run
 
